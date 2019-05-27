@@ -1,0 +1,15 @@
+---
+
+- name: add repositories for php-fpm
+  apt_repository:
+    repo: "{{ item.value.repo }}"
+    state: present
+  with_dict: "{{ php_fpm.repos }}"
+
+- name: install php-fpm packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - "{{ php_fpm.packages }}"

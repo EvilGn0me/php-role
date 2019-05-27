@@ -1,0 +1,15 @@
+---
+- name: add repositories for php-fpm
+  yum_repository:
+    name: "{{ item.value.name }}"
+    baseurl: "{{ item.value.baseurl }}"
+    description: Repo managed by Ansible
+    gpgcheck: no
+  with_dict: "{{ php_fpm.repos }}"
+
+- name: install php-fpm packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ php_fpm.packages }}"

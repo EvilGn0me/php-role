@@ -1,0 +1,16 @@
+---
+php_fpm:
+  fpm_dir: '/etc/php/7.1/fpm/pool.d'
+  ini: '/etc/php/7.1/fpm/php.ini'
+  repos:
+    php:
+      repo: 'ppa:ondrej/php'
+  packages:
+    - php7.1-fpm
+    - php7.1-mbstring
+    - php7.1-gd
+    - php7.1-opcache
+    - php7.1-mcrypt
+    - php7.1-xml
+  services:
+    - php7.1-fpm
