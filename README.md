@@ -1,7 +1,7 @@
-PHP-FPM-role
+PHP-role
 =========
 
-This role installs php-fpm.
+This role installs php.
 
 TODO:
 * Add all configuration for php in variables

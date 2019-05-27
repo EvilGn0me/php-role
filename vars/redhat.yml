@@ -16,5 +16,6 @@ php_fpm:
     - php-gd
     - php-opcache
     - php-xml
+    - php-bcmath
   services:
     - php-fpm

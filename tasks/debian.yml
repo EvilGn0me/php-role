@@ -6,10 +6,17 @@
     state: present
   with_dict: "{{ php_fpm.repos }}"
 
-- name: install php-fpm packages
+- name: install php packages
   apt:
-    name: "{{ item }}"
+    name: "{{ php_fpm.packages }}"
     state: latest
     update_cache: yes
-  with_items:
-    - "{{ php_fpm.packages }}"
+  notify: restart php-fpm
+
+- name: install php user packages
+  apt:
+    name: "{{ php_conf.packages }}"
+    state: latest
+    update_cache: yes
+  notify: restart php-fpm
+  when: php_conf.packages is defined

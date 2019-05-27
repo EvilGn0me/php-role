@@ -7,9 +7,15 @@
     gpgcheck: no
   with_dict: "{{ php_fpm.repos }}"
 
-- name: install php-fpm packages
+- name: install php packages
   yum:
-    name: "{{ item }}"
+    name: "{{ php_fpm.packages }}"
     state: latest
-  with_items:
-    - "{{ php_fpm.packages }}"
+  notify: restart php-fpm
+
+- name: install php packages
+  yum:
+    name: "{{ php_conf.packages }}"
+    state: latest
+  notify: restart php-fpm
+  when: php_conf.packages is defined
